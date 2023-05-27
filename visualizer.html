@@ -16,11 +16,46 @@
       margin: 5px;
       transition: all 0.5s;
     }
+    #options{
+      position: absolute;
+      top: 90vh;
+      left: 17vw;
+    }
+    .button{
+      width: 20vw;
+      height: 5vh;
+      margin-right: 2vw;
+      border-radius: 15px;
+      background-color: lightgreen;
+      color: white;
+      font-size: 1.3vw;
+      font-weight: bold;
+      border: 2px solid white;
+    }
+    .button:hover{
+      cursor: pointer;
+      background-color: green;
+    }
+    h1{
+      position: absolute;
+      top: 2vh;
+      left: 33vw;
+      font-size: 3vw;
+      color: lightgreen;
+    }
   </style>
 </head>
 <body>
   <div id="array-container"></div>
-  <button onclick="mergeSort(array, 0, array.length - 1)">Start</button>
+  <h1>Merge sort visualizer</h1>
+  <div>
+
+  </div>
+  <div id="options">
+    <button id="" class="button">Clear</button>
+    <button id="" class="button">Add</button>
+    <button id="" class="button">Sort</button>
+  </div>
 
   <script>
     // Function to display an array in HTML
