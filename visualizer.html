@@ -39,17 +39,47 @@
     h1{
       position: absolute;
       top: 2vh;
-      left: 33vw;
+      left: 30vw;
       font-size: 3vw;
       color: lightgreen;
+    }
+    #main{
+      position: absolute;
+      top: 15vh;
+      left: 20vw;
+      width: 55vw;
+      height: 70vh;
+      background-color: lightgreen;
+    }
+    nav{
+      justify-content: center;
+      border-bottom: 2px solid white;
+      height: 5vh;
+      padding: 5vh 0px 0px 1vw;
+    }
+    label{
+      color: white;
+      font-size: 1.2vw;
+      font-size: 1.3vw;
+      font-weight: bold;
+    }
+    input[type="text"]{
+      width: 40vw;
+      border-radius: 5px;
+      height: 3vh;
+      background-color: white;
+      border: none;
     }
   </style>
 </head>
 <body>
   <div id="array-container"></div>
   <h1>Merge sort visualizer</h1>
-  <div>
-
+  <div id="main">
+    <nav>
+      <label>Your values: </label>
+      <input type="text" placeholder="Enter some numbers separated by commas">
+    </nav>
   </div>
   <div id="options">
     <button id="" class="button">Clear</button>
@@ -130,7 +160,6 @@
       
     }
 
-    displayArray(array);
   </script>
 </body>
 </html>
