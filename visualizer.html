@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .box {
+      display: inline-block;
+      border: 1px solid black;
+      padding: 5px;
+      margin: 5px;
+      transition: all 0.5s;
+    }
+    .resultBox{
+        display: inline-block;
+      border: 2px solid lightgreen;
+      padding: 5px;
+      margin: 5px;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div id="array-container"></div>
+  <button onclick="mergeSort(array, 0, array.length - 1)">Start</button>
+
+  <script>
+    // Function to display an array in HTML
+    function displayArray(array) {
+      const container = document.getElementById("array-container");
+      const miniContainer = document.createElement("div");
+
+      for (let i = 0; i < array.length; i++) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.textContent = array[i];
+        miniContainer.appendChild(box);
+      }
+      container.appendChild(miniContainer);
+    }
+
+    function displaySorted(array){
+        const container = document.getElementById("array-container");
+        const miniContainer = document.createElement("div");
+
+      for (let i = 0; i < array.length; i++) {
+        const box = document.createElement("div");
+        box.classList.add("resultBox");
+        box.textContent = array[i];
+        miniContainer.appendChild(box);
+      }
+      container.appendChild(miniContainer);
+    }
+
+    const array = [6, 2, 31, -4, -94];
+
+    function mergeSort(array, left, right) {
+     displayArray(array.slice(left, right + 1));
+
+      if (left >= right) {
+        return;
+      }
+
+      const middle = Math.floor((right - left) / 2) + left;
+      mergeSort(array, left, middle);
+      mergeSort(array, middle + 1, right);
+
+      let index1 = left;
+      let index2 = middle + 1;
+      const newArray = [];
+
+      while (index1 <= middle && index2 <= right) {
+        if (array[index1] < array[index2]) {
+          newArray.push(array[index1]);
+          index1++;
+        } else {
+          newArray.push(array[index2]);
+          index2++;
+        }
+      }
+
+      while (index1 <= middle) {
+        newArray.push(array[index1]);
+        index1++;
+      }
+
+      while (index2 <= right) {
+        newArray.push(array[index2]);
+        index2++;
+      }
+
+      for (let j = left; j <= right; j++) {
+        array[j] = newArray[j - left];
+      }
+
+    displaySorted(newArray);
+      
+    }
+
+    displayArray(array);
+  </script>
+</body>
+</html>
