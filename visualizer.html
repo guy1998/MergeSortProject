@@ -78,19 +78,25 @@
   <div id="main">
     <nav>
       <label>Your values: </label>
-      <input type="text" placeholder="Enter some numbers separated by commas">
+      <input id="input" type="text" placeholder="Enter some numbers separated by commas">
     </nav>
   </div>
   <div id="options">
-    <button id="" class="button">Clear</button>
-    <button id="" class="button">Add</button>
-    <button id="" class="button">Sort</button>
+    <button id="nextStep" class="button">Next</button>
+    <button id="prevStep" class="button">Previous</button>
+    <button id="clear" class="button">Clear</button>
+    <button id="add" class="button">Add</button>
+    <button id="sort" class="button">Sort</button>
   </div>
 
   <script>
+    let cnt = 0;
+    let states = [];
+    let array = [];
+
+      const container = document.getElementById("array-container");
     // Function to display an array in HTML
     function displayArray(array) {
-      const container = document.getElementById("array-container");
       const miniContainer = document.createElement("div");
 
       for (let i = 0; i < array.length; i++) {
@@ -99,7 +105,7 @@
         box.textContent = array[i];
         miniContainer.appendChild(box);
       }
-      container.appendChild(miniContainer);
+      states.push(miniContainer);
     }
 
     function displaySorted(array){
@@ -112,10 +118,8 @@
         box.textContent = array[i];
         miniContainer.appendChild(box);
       }
-      container.appendChild(miniContainer);
+      states.push(miniContainer);
     }
-
-    const array = [6, 2, 31, -4, -94];
 
     function mergeSort(array, left, right) {
      displayArray(array.slice(left, right + 1));
@@ -156,10 +160,57 @@
         array[j] = newArray[j - left];
       }
 
-    displaySorted(newArray);
-      
+    displaySorted(newArray); 
+
     }
+
+
+    document.getElementById('nextStep').addEventListener('click',() => {
+      if(cnt == states.length) return;
+      container.appendChild(states[cnt+1]);
+      cnt++;
+    });
+
+    document.getElementById('prevStep').addEventListener('click',() => {
+      if(cnt == 0) return;
+      container.removeChild(states[cnt]);
+      cnt--;
+    });   
+     
+    document.getElementById('clear').addEventListener('click',() => {
+      states = [];
+      array = [];
+      container.innerHTML = "";
+      cnt = 0;
+    });
+
+    document.getElementById('add').addEventListener('click',() => {
+      const result = document.getElementById('input').value;
+      try {
+      test = result.split(', ');
+      test.forEach(element => {
+        element = Number(element);
+      });
+      } catch (error) {
+        return;
+      }
+      array = test;
+    });
+
+    document.getElementById('sort').addEventListener('click',() => {
+      mergeSort(array,0,array.length);
+      container.appendChild(states[0]);
+      cnt++;
+    });
+
+
+
+     
 
   </script>
 </body>
 </html>
+
+
+
+
