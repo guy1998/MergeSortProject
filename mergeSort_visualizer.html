@@ -181,13 +181,7 @@
     document.getElementById('sort').addEventListener('click', () => {
         try {
             let inputNumbers = getInputValueNumber();
-            if (inputNumbers.length > 10 || inputNumbers.length % 2 === 1) {
-                alert('You can only input up to 10 numbers in an even length. You might experience problems during visualization with more entries. Thank you! ' +
-                    'Note: we will allow the input numbers up to 10 entries')
-                inputNumbers = inputNumbers.slice(0, 10);
-
-                document.getElementById('input').value = inputNumbers.join(',');
-            }
+            document.getElementById('input').value = inputNumbers.join(',');
             const middlePointWhereBranchSplit = Math.floor((inputNumbers.length - 1) / 2);
             mergeSort(inputNumbers, 0, inputNumbers.length - 1, 0, middlePointWhereBranchSplit);
             document.getElementById("array-container-start").appendChild(sortingState[0]);
