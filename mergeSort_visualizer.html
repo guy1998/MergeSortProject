@@ -170,8 +170,11 @@
 
     function getInputValueNumber() {
         const inputValue = document.getElementById('input').value.trim();
-        const inputNumbers = inputValue.trim().split(',');
+        let inputNumbers = inputValue.trim().split(',');
         inputNumbers.map(element => Number(element.trim()));
+        for(let i=0;i<inputNumbers.length;i++){
+            inputNumbers[i] = +inputNumbers[i];
+        }
         return inputNumbers;
     }
 
@@ -184,9 +187,6 @@
                 inputNumbers = inputNumbers.slice(0, 10);
 
                 document.getElementById('input').value = inputNumbers.join(',');
-                for(let i=0;i<inputNumbers.length;i++){
-                    inputNumbers[i] = parseInt(inputNumbers[i]);
-                }
             }
             const middlePointWhereBranchSplit = Math.floor((inputNumbers.length - 1) / 2);
             mergeSort(inputNumbers, 0, inputNumbers.length - 1, 0, middlePointWhereBranchSplit);
